@@ -1,0 +1,17 @@
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label {
+    font-size: 18px;
+    margin: 15px 0px 5px 5px;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 18px;
+    padding: 5px;
+}

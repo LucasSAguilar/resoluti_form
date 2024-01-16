@@ -1,11 +1,17 @@
+
+
 .logo {
-    width: 500px;
+    min-width: 11rem;
+    width: 40%;
     margin-bottom: 25px;
+    padding: 25px;
+    background-color: #ffffff38;
+    border-radius: 15px;
 }
 
 .separador {
     height: 2px;
-    background-color: var(--laranja);
+    background-color: #F26E35;
     width: 50%;
     box-shadow: 0px 2px 1px 1px #0000003a;
 }
@@ -42,5 +48,11 @@
 }
 
 .bttLinkLogin:hover {
-    box-shadow: 2px 5px 2px 1px #ffffff;
+    box-shadow: -2px 3px 2px 1px #ffffff;
+}
+
+@media screen and (max-width: 375px){
+    .bttLinkLogin, .bttLinkCadastro{
+        width: 100px;
+    }
 }

@@ -1,9 +1,16 @@
 .tela {
-    height: 100vh;
-    width: 100vw;
+    background-image: url('../../img/backgroundCorp.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.efeito {
+    background: linear-gradient(255deg, #0d0d0d -4.54%, #1a1a1aa1 190.91%);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(255deg, #696969 -4.54%, rgba(105, 105, 105, 0.00) 190.91%);
+    min-height: 100vh;
+
 }

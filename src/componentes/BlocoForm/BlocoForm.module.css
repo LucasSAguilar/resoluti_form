@@ -1,0 +1,22 @@
+.separador {
+    width: 100%;
+    background-color: #000000ae;
+    height: 2px;
+    margin: 25px 0 25px 0;
+}
+
+.containerBotoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bttAdd {
+    background-color: #1c1c1c;
+    color: #ffffff;
+}
+
+.bttAdd:hover {
+    background-color: #303030;
+
+}

@@ -1,0 +1,66 @@
+.logo {
+    min-width: 10rem;
+    width: 40%;
+    max-width: 40rem;
+
+    margin-bottom: 25px;
+    padding: 25px;
+    background-color: #ffffff38;
+    border-radius: 15px;
+}
+
+.containerLogin {
+    height: 50%;
+    width: 80%;
+    min-width: 11rem;
+    max-width: 50rem;
+    border-radius: 4px;
+    background-color: #D9D9D9;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px;
+}
+
+.conteudo {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.inputImagem {
+    height: 300px;
+    width: 300px;
+    background-color: #C2C2C2;
+    border-radius: 70px;
+}
+
+@media screen and (max-width: 1366px) {
+    .conteudo {
+        flex-direction: column;
+    }
+
+    .containerLogin {
+        height: 70%;
+    }
+    .form {
+        width: 100%;
+    }
+
+    .inputImagem {
+        height: 150px;
+        width: 150px;
+    }
+}
