@@ -11,6 +11,13 @@ export default function Cadastro() {
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [alerta, setAlerta] = useState("");
+
+  const conferirDados = () => {
+    password == ""
+      ? navigate("/formulario")
+      : setAlerta("Usuário não encontrado!");
+  };
 
   return (
     <Tela>
@@ -23,6 +30,7 @@ export default function Cadastro() {
             label={"Username"}
             placeholder={"Insira seu username"}
             aoAlterado={(conteudo) => setUserName(conteudo)}
+            value={username}
           />
           <Inputs
             estilosContainer={styles.estilosContainer}
@@ -30,12 +38,13 @@ export default function Cadastro() {
             placeholder={"Insira sua senha"}
             aoAlterado={(conteudo) => setPassword(conteudo)}
             type="password"
+            value={password}
           />
-          <p className={styles.alerta}>Usuário não encontrado</p>
+          <p className={styles.alerta}>{alerta}</p>
           <Botao
             value={"Entrar"}
             onClick={() => {
-                //navigate("/formulario");}
+              conferirDados();
             }}
           />
         </div>

@@ -10,7 +10,16 @@ export default function Cadastro() {
       <img className={styles.logo} src={Logo} />
       <div className={styles.containerLogin}>
         <div className={styles.conteudo}>
-          <input className={styles.inputImagem} type="file" />
+          <div className={styles.containerInputImagem}>
+            <label htmlFor="inputImagem" className={styles.labelImagem}>
+              Insira sua imagem
+            </label>
+            <input
+              id="inputImagem"
+              className={styles.inputImagem}
+              type="file"
+            />
+          </div>
           <div className={styles.form}>
             <Input label={"Username"} placeholder={"Insira seu usuário"} />
             <Input

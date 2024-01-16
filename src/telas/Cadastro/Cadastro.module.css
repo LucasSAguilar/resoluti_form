@@ -41,10 +41,26 @@
 }
 
 .inputImagem {
+    display: none;
+}
+
+.labelImagem {
     height: 300px;
     width: 300px;
+    cursor: pointer;
     background-color: #C2C2C2;
-    border-radius: 70px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerInputImagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 @media screen and (max-width: 1366px) {
@@ -55,6 +71,7 @@
     .containerLogin {
         height: 70%;
     }
+
     .form {
         width: 100%;
     }

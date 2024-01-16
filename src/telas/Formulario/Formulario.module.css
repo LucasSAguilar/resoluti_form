@@ -74,3 +74,29 @@
 .container::-webkit-scrollbar {
     width: 8px;
 }
+
+.bttExcluir {
+    background-color: #190303;
+    width: 15%;
+    min-width: 8rem;
+}
+
+.bttExcluir:hover {
+    background-color: #681313;
+}
+
+.tamanhoInputs {
+    width: 40%;
+    min-width: 20rem;
+}
+
+
+@media screen and (max-width: 720px) {
+    .form {
+        justify-content: center;
+    }
+
+    .tamanhoInputs {
+        width: 100%;
+    }
+}
