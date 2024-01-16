@@ -30,3 +30,8 @@
 .form {
     width: 100%;
 }
+
+.alerta {
+    color: #950707;
+    text-align: center;
+}
