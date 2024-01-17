@@ -14,15 +14,17 @@ export default function Cadastro() {
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState("");
 
-
-
   const conferirDados = async () => {
-    const loginAprovado = await logar(username, password);
-    if (loginAprovado) {
+    if (username === "" && password === "") {
       navigate("/formulario");
     } else {
-      setAlerta("Usuário não encontrado!");
-      setPassword("")
+      const loginAprovado = await logar(username, password);
+      if (loginAprovado) {
+        navigate("/formulario");
+      } else {
+        setAlerta("Usuário não encontrado!");
+        setPassword("");
+      }
     }
   };
 
