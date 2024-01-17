@@ -6,10 +6,10 @@ const logar = async (username, senha) => {
     const URL = `http://localhost:3001/realizarLogin?username=${username}&senha=${senha}`;
     const response = await axios.get(URL);
     console.log("Dados recebidos:", response.data);
-    return response.data.aprovado; 
+    return response.data; 
   } catch (error) {
     console.error("Erro na requisição:", error);
-    return false; 
+    return error
   }
 };
 

@@ -18,19 +18,21 @@ export default function Cadastro() {
     if (username === "" && password === "") {
       navigate("/formulario");
     } else {
-      const loginAprovado = await logar(username, password);
-      if (loginAprovado) {
+      const response = await logar(username, password);
+      if (response.aprovado) {
         navigate("/formulario");
-      } else {
+      } else if (response.aprovado === false) {
         setAlerta("Usuário não encontrado!");
         setPassword("");
+      } else {
+        setAlerta(`Erro: ${response}`)
       }
     }
   };
 
   return (
     <Tela>
-      <img className={styles.logo} src={Logo} />
+      <img className={styles.logo} src={Logo} alt="Logo da empresa Resoluti"/>
       <div className={styles.container}>
         <div className={styles.form}>
           <h3>Login</h3>

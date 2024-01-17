@@ -53,7 +53,7 @@ export default function Cadastro() {
 
   return (
     <Tela>
-      <img className={styles.logo} src={Logo} />
+      <img className={styles.logo} src={Logo} alt="Logo da empresa Resoluti"/>
       <div className={styles.containerLogin}>
         <div className={styles.conteudo}>
           <div className={styles.containerInputImagem}>
