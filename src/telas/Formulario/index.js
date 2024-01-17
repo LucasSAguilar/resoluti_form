@@ -4,9 +4,15 @@ import Inputs from "componentes/Inputs";
 import BlocoForm from "componentes/BlocoForm";
 import Botao from "componentes/Botao";
 import Logo from "img/logoResoluti.webp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormEndereco from "./Forms/FormEnderecos";
 import FormContatos from "./Forms/FormContatos";
+import {
+  addNovoContato,
+  addNovoEndereco,
+  organizarID,
+  excluirForm,
+} from "./Funcoes/funcoes.js";
 
 export default function Cadastro() {
   const [dadosPessoais, setDadosPessoais] = useState({
@@ -19,6 +25,15 @@ export default function Cadastro() {
   });
   const [enderecos, setEnderecos] = useState([
     {
+      id: 0,
+      logradouro: "",
+      numero: "",
+      cep: "",
+      complemento: "",
+      cidade: "",
+      estado: "",
+    },
+    {
       id: 1,
       logradouro: "",
       numero: "",
@@ -30,42 +45,16 @@ export default function Cadastro() {
   ]);
   const [contatos, setContatos] = useState([
     {
-      id: 1,
+      id: 0,
       nome: "",
       contato: "",
       tipoContato: "",
     },
   ]);
 
-  const addNovoEndereco = () => {
-    setEnderecos((prevEnderecos) => [
-      ...prevEnderecos,
-      {
-        id: prevEnderecos.length + 1,
-        logradouro: "",
-        numero: "",
-        cep: "",
-        complemento: "",
-        cidade: "",
-        estado: "",
-      },
-    ]);
-  };
-
-  const addNovoContato = () => {
-    setContatos((prevContato) => [
-      ...prevContato,
-      {
-        id: prevContato + 1,
-        nome: "",
-        contato: "",
-        tipoContato: "",
-      },
-    ]);
-  };
-
-  const deleteEndereco = () => {
-    console.log("Deletado");
+  const excluirForm = (id, set, form) => {
+    const novoArray = form.filter((item) => item.id !== id);
+    set(novoArray);
   };
 
   return (
@@ -114,43 +103,53 @@ export default function Cadastro() {
         <BlocoForm
           hasButtons={true}
           titulo={"Endereços"}
-          onClickAdd={() => addNovoEndereco()}
+          onClickAdd={() => addNovoEndereco(setEnderecos)}
         >
           {enderecos.map((e) => {
             return (
-              <>
+              <div key={e.id}>
                 <FormEndereco
-                  onClickRemove={() => deleteEndereco()}
-                  key={e.id}
                   estilosForm={styles.form}
                   tamanhoInputs={styles.tamanhoInputs}
                 />
-                <Botao value={"Excluir"} estiloSecundario={styles.bttExcluir}>
+                <Botao
+                  onClick={() => {
+                    excluirForm(e.id, setEnderecos, enderecos);
+                  }}
+                  value={"Excluir"}
+                  estiloSecundario={styles.bttExcluir}
+                >
                   Excluir
                 </Botao>
                 <div className={styles.separadorInterno} />
-              </>
+              </div>
             );
           })}
         </BlocoForm>
 
         <BlocoForm
-          onClickAdd={() => addNovoContato()}
+          onClickAdd={() => addNovoContato(setContatos)}
           titulo={"Contatos"}
           hasButtons={true}
         >
           {contatos.map((c) => {
             return (
-              <>
+              <div key={c.id}>
                 <FormContatos
                   tamanhoInputs={styles.tamanhoInputs}
                   estiloForm={styles.form}
                 />
-                <Botao value={"Excluir"} estiloSecundario={styles.bttExcluir}>
+                <Botao
+                  onClick={() => {
+                    excluirForm(c.id, setContatos, contatos);
+                  }}
+                  value={"Excluir"}
+                  estiloSecundario={styles.bttExcluir}
+                >
                   Excluir
                 </Botao>
                 <div className={styles.separadorInterno} />
-              </>
+              </div>
             );
           })}
         </BlocoForm>
