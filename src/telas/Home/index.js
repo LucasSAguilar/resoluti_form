@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Cadastro() {
   return (
   <Tela>
-    <img className={styles.logo} src={Logo}/>
+    <img className={styles.logo} src={Logo} alt="Logo da empresa Resoluti"/>
     <div className={styles.separador}></div>
     <div className={styles.containerBotoes}>
       <Link className={styles.bttLinkLogin} to={"/login"}>Login</Link>

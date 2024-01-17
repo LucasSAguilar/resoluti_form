@@ -46,6 +46,7 @@ export default function Cadastro() {
       setTelefone("");
       setPreviewImagem(null);
       setAlerta("");
+      alert("Cadastrado com sucesso!")
     } else {
       setAlerta(`Ocorreu um erro: ${response}`);
     }
