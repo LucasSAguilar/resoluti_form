@@ -1,37 +1,76 @@
 import Inputs from "componentes/Inputs";
 import styles from "./FormEnderecos.module.css";
 
-export default function FormEndereco({ estilosForm, tamanhoInputs }) {
+export default function FormEndereco({
+  estilosForm,
+  tamanhoInputs,
+  setEndereco,
+  endereco,
+  form,
+}) {
+  const alterarValor = (field, valor) => {
+    const novoValor = { ...endereco, [field]: valor };
+    const novosValores = form.map((e) =>
+      e.id === endereco.id ? novoValor : e
+    );
+
+    setEndereco(novosValores);
+  };
+
   return (
     <div className={estilosForm}>
       <Inputs
         estilosContainer={tamanhoInputs}
         label={"Logradouro"}
         placeholder={"Insira o logradouro"}
+        value={endereco.logradouro}
+        aoAlterado={(value) => {
+          alterarValor("logradouro", value);
+        }}
       />
       <Inputs
         estilosContainer={tamanhoInputs}
         label={"Número"}
         placeholder={"Insira o número"}
+        value={endereco.numero}
+        aoAlterado={(value) => {
+          alterarValor("numero", value);
+        }}
       />
       <Inputs
         estilosContainer={tamanhoInputs}
         label={"CEP"}
         placeholder={"Insira o CEP"}
+        value={endereco.cep}
+        aoAlterado={(value) => {
+          alterarValor("cep", value);
+        }}
       />
       <Inputs
         estilosContainer={tamanhoInputs}
         label={"Complemento"}
         placeholder={"Insira o compelemento"}
+        value={endereco.complemento}
+        aoAlterado={(value) => {
+          alterarValor("complemento", value);
+        }}
       />
       <Inputs
         estilosContainer={tamanhoInputs}
         label={"Cidade"}
         placeholder={"Insira a cidade"}
+        value={endereco.cidade}
+        aoAlterado={(value) => {
+          alterarValor("cidade", value);
+        }}
       />
       <div className={styles.containerSelect}>
         <label className={styles.labelSelect}>Escolha seu estado</label>
-        <select className={styles.inputSelect}>
+        <select
+          className={styles.inputSelect}
+          onChange={(event) => alterarValor("estado", event.target.value)}
+          value={endereco.estado}
+        >
           <option value="ac">Acre</option>
           <option value="al">Alagoas</option>
           <option value="ap">Amapá</option>

@@ -22,6 +22,7 @@ const addNovoEndereco = (set) => {
       estado: "",
     },
   ]);
+  organizarID(set)
 };
 
 const addNovoContato = (set) => {
@@ -34,13 +35,19 @@ const addNovoContato = (set) => {
       tipoContato: "",
     },
   ]);
+
+  organizarID(set)
 };
 
 const excluirForm = (id, set, form) => {
-    const novoArray = form.filter((item) => item.id !== id);
-    set(novoArray);
-  };
+  const novoArray = form.filter((item) => item.id !== id);
+  set(novoArray);
+};
 
+const converterData = (data) => {
+  const partes = data.split("/");
+  const novaData = `${partes[2]}-${partes[1]}-${partes[0]}`;
+  return novaData;
+};
 
-
-module.exports = { organizarID, addNovoContato, addNovoEndereco, excluirForm };
+module.exports = { organizarID, addNovoContato, addNovoEndereco, excluirForm, converterData };

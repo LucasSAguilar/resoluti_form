@@ -4,13 +4,12 @@ import Inputs from "componentes/Inputs";
 import BlocoForm from "componentes/BlocoForm";
 import Botao from "componentes/Botao";
 import Logo from "img/logoResoluti.webp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormEndereco from "./Forms/FormEnderecos";
 import FormContatos from "./Forms/FormContatos";
 import {
   addNovoContato,
   addNovoEndereco,
-  organizarID,
   excluirForm,
 } from "./Funcoes/funcoes.js";
 
@@ -31,16 +30,7 @@ export default function Cadastro() {
       cep: "",
       complemento: "",
       cidade: "",
-      estado: "",
-    },
-    {
-      id: 1,
-      logradouro: "",
-      numero: "",
-      cep: "",
-      complemento: "",
-      cidade: "",
-      estado: "",
+      estado: "ac",
     },
   ]);
   const [contatos, setContatos] = useState([
@@ -52,15 +42,16 @@ export default function Cadastro() {
     },
   ]);
 
-  const excluirForm = (id, set, form) => {
-    const novoArray = form.filter((item) => item.id !== id);
-    set(novoArray);
+  const alterarDadosPessoais = (field, valor) => {
+    setDadosPessoais((prevDados) => ({
+      ...prevDados,
+      [field]: valor,
+    }));
   };
 
   return (
     <Tela>
       <img className={styles.logo} src={Logo} />
-
       <div className={styles.container}>
         <h1 className={styles.titulo}>Cadastrar pessoa física</h1>
 
@@ -70,32 +61,44 @@ export default function Cadastro() {
               estilosContainer={styles.tamanhoInputs}
               label={"Nome"}
               placeholder={"Insira o nome"}
+              aoAlterado={(value) => alterarDadosPessoais("nome", value)}
+              value={dadosPessoais.nome}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               label={"Sobrenome"}
               placeholder={"Insira o sobrenome"}
+              aoAlterado={(value) => alterarDadosPessoais("sobrenome", value)}
+              value={dadosPessoais.sobrenome}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               type="date"
               label={"Data de nascimento"}
               placeholder={"00/00/0000"}
+              aoAlterado={(value) => alterarDadosPessoais("data", value)}
+              value={dadosPessoais.data}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               label={"Email"}
               placeholder={"Insira o email"}
+              aoAlterado={(value) => alterarDadosPessoais("email", value)}
+              value={dadosPessoais.email}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               label={"CPF"}
               placeholder={"Insira o CPF"}
+              aoAlterado={(value) => alterarDadosPessoais("cpf", value)}
+              value={dadosPessoais.cpf}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               label={"RG"}
               placeholder={"Insira o RG"}
+              aoAlterado={(value) => alterarDadosPessoais("rg", value)}
+              value={dadosPessoais.rg}
             />
           </div>
         </BlocoForm>
@@ -111,6 +114,9 @@ export default function Cadastro() {
                 <FormEndereco
                   estilosForm={styles.form}
                   tamanhoInputs={styles.tamanhoInputs}
+                  setEndereco={setEnderecos}
+                  endereco={e}
+                  form={enderecos}
                 />
                 <Botao
                   onClick={() => {
@@ -138,6 +144,9 @@ export default function Cadastro() {
                 <FormContatos
                   tamanhoInputs={styles.tamanhoInputs}
                   estiloForm={styles.form}
+                  contato={c}
+                  form={contatos}
+                  setContatos={setContatos}
                 />
                 <Botao
                   onClick={() => {
