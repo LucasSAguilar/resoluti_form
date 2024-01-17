@@ -44,10 +44,36 @@ const excluirForm = (id, set, form) => {
   set(novoArray);
 };
 
-const converterData = (data) => {
-  const partes = data.split("/");
-  const novaData = `${partes[2]}-${partes[1]}-${partes[0]}`;
-  return novaData;
+const resetarForm = (setPessoais, setContatos, setEnderecos) => {
+  setPessoais({
+    nome: "",
+    sobrenome: "",
+    nascimento: "",
+    email: "",
+    cpf: "",
+    rg: "",
+  });
+
+  setContatos([
+    {
+      id: 0,
+      nome: "",
+      contato: "",
+      tipoContato: "",
+    },
+  ]);
+
+  setEnderecos([
+    {
+      id: 0,
+      logradouro: "",
+      numero: "",
+      cep: "",
+      complemento: "",
+      cidade: "",
+      estado: "ac",
+    },
+  ]);
 };
 
-module.exports = { organizarID, addNovoContato, addNovoEndereco, excluirForm, converterData };
+module.exports = { organizarID, addNovoContato, addNovoEndereco, excluirForm, resetarForm };

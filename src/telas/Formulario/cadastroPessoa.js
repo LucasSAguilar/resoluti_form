@@ -9,10 +9,10 @@ const realizarCadastro = async (dadosPessoais, enderecos, contatos) => {
       enderecos,
       contatos,
     });
-    return response.data.efetuado;
+    return response.data;
   } catch (error) {
     console.error("Erro ao cadastrar:", error);
-    return false;
+    return error;
   }
 };
 

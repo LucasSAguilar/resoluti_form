@@ -12,10 +12,21 @@ export default function Cadastro() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [imagem, setImagem] = useState(null);
+  const [previewImagem, setPreviewImagem] = useState(null);
+  const [alerta, setAlerta] = useState("");
 
   const mudarImagem = (event) => {
     const file = event.target.files[0];
     setImagem(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewImagem(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const iniciarCadastro = async () => {
@@ -26,7 +37,18 @@ export default function Cadastro() {
       email,
       telefone
     );
-    console.log(response);
+
+    if (response.status === 200) {
+      setUsername("");
+      setPassword("");
+      setEmail("");
+      setImagem(null);
+      setTelefone("");
+      setPreviewImagem(null);
+      setAlerta("");
+    } else {
+      setAlerta(`Ocorreu um erro: ${response}`);
+    }
   };
 
   return (
@@ -36,7 +58,15 @@ export default function Cadastro() {
         <div className={styles.conteudo}>
           <div className={styles.containerInputImagem}>
             <label htmlFor="inputImagem" className={styles.labelImagem}>
-              Insira sua imagem
+              {previewImagem ? (
+                <img
+                  src={previewImagem}
+                  alt="Preview da imagem"
+                  className={styles.previewImagem}
+                />
+              ) : (
+                <p>Insira sua imagem </p>
+              )}
             </label>
             <input
               id="inputImagem"
@@ -73,6 +103,7 @@ export default function Cadastro() {
             />
           </div>
         </div>
+        <p className={styles.alerta}>{alerta}</p>
         <Botao value={"Cadastrar"} onClick={() => iniciarCadastro()} />
       </div>
     </Tela>

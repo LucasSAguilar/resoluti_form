@@ -11,14 +11,17 @@ import FormContatos from "./Forms/FormContatos";
 import {
   addNovoContato,
   addNovoEndereco,
+  resetarForm,
   excluirForm,
 } from "./Funcoes/funcoes.js";
 
 export default function Cadastro() {
+  const [alerta, setAlerta] = useState("");
+
   const [dadosPessoais, setDadosPessoais] = useState({
     nome: "",
     sobrenome: "",
-    data: "",
+    nascimento: "",
     email: "",
     cpf: "",
     rg: "",
@@ -51,7 +54,13 @@ export default function Cadastro() {
   };
 
   const iniciarEnvio = async () => {
-    await realizarCadastro(dadosPessoais, enderecos, contatos)
+    const response = await realizarCadastro(dadosPessoais, enderecos, contatos);
+    if (response.efetuado) {
+      resetarForm(setDadosPessoais, setContatos, setEnderecos);
+      alert("Cadastro realizado com sucesso!")
+    } else {
+      setAlerta(`Ocorreu um erro: ${response}`);
+    }
   };
 
   return (
@@ -81,12 +90,13 @@ export default function Cadastro() {
               type="date"
               label={"Data de nascimento"}
               placeholder={"00/00/0000"}
-              aoAlterado={(value) => alterarDadosPessoais("data", value)}
-              value={dadosPessoais.data}
+              aoAlterado={(value) => alterarDadosPessoais("nascimento", value)}
+              value={dadosPessoais.nascimento}
             />
             <Inputs
               estilosContainer={styles.tamanhoInputs}
               label={"Email"}
+              type="email"
               placeholder={"Insira o email"}
               aoAlterado={(value) => alterarDadosPessoais("email", value)}
               value={dadosPessoais.email}
@@ -168,6 +178,7 @@ export default function Cadastro() {
           })}
         </BlocoForm>
 
+        <p className={styles.alerta}>{alerta}</p>
         <div className={styles.centralizarBotao}>
           <Botao
             estiloSecundario={styles.botaoFinalizar}

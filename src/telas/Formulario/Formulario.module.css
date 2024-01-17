@@ -90,6 +90,12 @@
     min-width: 20rem;
 }
 
+.alerta {
+    color: #970f0f;
+    width: 100%;
+    text-align: center;
+}
+
 
 @media screen and (max-width: 720px) {
     .form {

@@ -44,6 +44,13 @@
     display: none;
 }
 
+.previewImagem {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
 .labelImagem {
     height: 300px;
     width: 300px;
@@ -54,6 +61,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; 
+}
+
+.labelImagem span {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
 }
 
 .containerInputImagem {
@@ -61,6 +75,10 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+}
+
+.alerta {
+    color: #831212;
 }
 
 @media screen and (max-width: 1366px) {

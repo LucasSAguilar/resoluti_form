@@ -22,6 +22,7 @@ export default function Cadastro() {
       navigate("/formulario");
     } else {
       setAlerta("Usuário não encontrado!");
+      setPassword("")
     }
   };
 
