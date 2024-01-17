@@ -4,6 +4,7 @@ import Inputs from "componentes/Inputs";
 import BlocoForm from "componentes/BlocoForm";
 import Botao from "componentes/Botao";
 import Logo from "img/logoResoluti.webp";
+import { realizarCadastro } from "./cadastroPessoa.js";
 import { useState } from "react";
 import FormEndereco from "./Forms/FormEnderecos";
 import FormContatos from "./Forms/FormContatos";
@@ -47,6 +48,10 @@ export default function Cadastro() {
       ...prevDados,
       [field]: valor,
     }));
+  };
+
+  const iniciarEnvio = async () => {
+    await realizarCadastro(dadosPessoais, enderecos, contatos)
   };
 
   return (
@@ -167,6 +172,7 @@ export default function Cadastro() {
           <Botao
             estiloSecundario={styles.botaoFinalizar}
             value={"Finalizar e enviar"}
+            onClick={() => iniciarEnvio()}
           />
         </div>
       </div>

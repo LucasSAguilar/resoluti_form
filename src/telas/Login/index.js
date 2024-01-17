@@ -5,6 +5,7 @@ import Botao from "componentes/Botao";
 import Logo from "img/logoResoluti.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import logar from "./logar";
 
 export default function Cadastro() {
   const navigate = useNavigate();
@@ -13,10 +14,15 @@ export default function Cadastro() {
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState("");
 
-  const conferirDados = () => {
-    password == ""
-      ? navigate("/formulario")
-      : setAlerta("Usuário não encontrado!");
+
+
+  const conferirDados = async () => {
+    const loginAprovado = await logar(username, password);
+    if (loginAprovado) {
+      navigate("/formulario");
+    } else {
+      setAlerta("Usuário não encontrado!");
+    }
   };
 
   return (
